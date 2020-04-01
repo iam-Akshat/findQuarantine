@@ -1,0 +1,14 @@
+{
+  "name": "findmyquarantine",
+  "version": "0.0.1",
+  "description": "My first real project",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Akshat Sethi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
