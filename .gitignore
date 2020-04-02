@@ -105,7 +105,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
-
+.ngrok.exe
 # yarn v2
 
 .yarn/cache
