@@ -1,9 +1,10 @@
 const express= require('express');
-
+const mongoose=require('mongoose');
+import dbInit from './helpers/dbhelper.js';
 require('dotenv').config()
 
 const app=express();
-
+const db=dbInit();
 app.use(express.static('public'));
 
 app.use(express.json());//Used for parsing form data
