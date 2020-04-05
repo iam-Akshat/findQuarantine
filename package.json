@@ -6,7 +6,6 @@
   "scripts": {
     "test": "node app.js"
   },
-  "type": "module",
   "author": "Akshat Sethi",
   "license": "ISC",
   "dependencies": {

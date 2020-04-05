@@ -5,6 +5,15 @@
           box-sizing: border-box;
 }
 
+body {
+  height: 100%;
+  width: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#DA4453), to(#89216B));
+  background-image: linear-gradient(#DA4453, #89216B);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 #form-container {
   text-align: center;
   display: -webkit-box;
@@ -108,12 +117,8 @@
 }
 
 .main-container {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#DA4453), to(#89216B));
-  background-image: linear-gradient(#DA4453, #89216B);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   padding: 5% 5%;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   font-family: 'Poppins',sans-serif;
   color: #ffdada;

@@ -19,13 +19,13 @@
             <p>This Quarantine season find some random person on internet who has the same interests as you and is probably very bored.</p>
         </section>
         <section id="form-container">
-            <form action="/" method="post">
+            <form >
                 <h1>Fill this to find your quarantine</h1>
                 <label style="margin:1rem;font-size: 0.8rem ;"for="cid">What medium should your quarantine use to find you,could be ig or something</label>
                 <textarea name="cid" id="cid" placeholder="ig:@somecooolname,reddit:newidcuzigotbanned"></textarea>
                 <label style="margin-top:3rem;font-size: 0.8rem ;"for="tags">Write your interests seperated by a comma ","</label>
                 <textarea name="intags" id="tags" cols="30" rows="10" placeholder="coding,day dreaming,food"></textarea>
-                <button id="submit" type="submit">FInd!</button>
+                <button id="submit"  onclick="doStuff();" type="submit">FInd!</button>
             </form>
         </section>
         <footer>
@@ -33,9 +33,28 @@
             <a href="mailto:masterakshata@gmail.com">Contact me</a>
         </footer>
     </div>
+    <script>
+        function doStuff(){
+            event.preventDefault();
+            const formEl=document.querySelector('form');
+            const data=new URLSearchParams(new FormData(formEl));
+            fetch('/',{
+                method:'post',
+                body:data,
+            }).then(async (res)=>{
+                res.json().then(dat=>{
+                    console.log(dat);
+                })
+                formEl.style.visibility="hidden";
+                formEl.style.display="none";
+            }
+            );
+        }
+        
+    </script>
+    
 </body>
 </html>
-
 
 
 
