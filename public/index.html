@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,78 +8,113 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+2:500|Poppins:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="main-container">
         <header>
             <div class="logo-text">
-                <a href="/"><h1>Find</h1><h1>Your</h1><h1>Quarantine</h1></a>
+                <a href="/">
+                    <h1>Find</h1>
+                    <h1>Your</h1>
+                    <h1>Quarantyne</h1>
+                </a>
             </div>
             <img src="./logo-resized.png" alt="" class="logo">
         </header>
         <section id="intro">
-            <p>This Quarantine season find some random person on internet who has the same interests as you and is probably very bored.</p>
+            <p>This Quarantine season find some random person on internet who has the same interests as you and is
+                probably very bored.</p>
         </section>
         <section id="form-container">
-            <form >
-                <h1>Fill this to find your quarantine</h1>
-                <label style="margin:1rem;font-size: 0.8rem ;"for="cid">What medium should your quarantine use to find you,could be ig or something</label>
+            <form>
+                <h1>Fill this to find your Quarantyne</h1>
+                <label style="margin:1rem;font-size: 0.8rem ;" for="cid">What medium should your Quarantyne use to find
+                    you,could be ig or something</label>
                 <textarea name="cid" id="cid" placeholder="ig:@somecooolname,reddit:newidcuzigotbanned"></textarea>
-                <label style="margin-top:3rem;font-size: 0.8rem ;"for="tags">Write your interests seperated by a comma ","</label>
+                <label style="margin-top:3rem;font-size: 0.8rem ;" for="tags">Write your interests seperated by a comma
+                    ","</label>
                 <textarea name="intags" id="tags" cols="30" rows="10" placeholder="coding,day dreaming,food"></textarea>
-                <button id="submit"  onclick="doStuff();" type="submit">FInd!</button>
+                <button id="submit" onclick="doStuff();" type="submit">FInd!</button>
             </form>
+
         </section>
+
         <footer>
-            This is not a commercial service,your data is only stored in a cloud server and is only used here for this service.
+            This is not a commercial service,your data is only stored in a cloud server and its safe dont worry, it is only used here for this
+            little thing.
             <a href="mailto:masterakshata@gmail.com">Contact me</a>
         </footer>
     </div>
     <script>
-        function doStuff(){
-            event.preventDefault();
-            const formEl=document.querySelector('form');
-            const data=new URLSearchParams(new FormData(formEl));
-            fetch('/',{
-                method:'post',
-                body:data,
-            }).then(async (res)=>{
-                res.json().then(dat=>{
-                    console.log(dat);
-                })
-                formEl.style.visibility="hidden";
-                formEl.style.display="none";
+        var formEl = document.querySelector('form');
+        function customFetch(data){
+            if(data===1){
+                console.log('wtf');
+                fetch('/random').then((res)=>{
+                    res.json().then((dat)=>{
+                        formEl.innerHTML=gotTags(dat,'nope');
+                    })
+                });
+            }else{
+                fetch('/', {
+                method: 'post',
+                body: data,
+            }).then(async (res) => {
+                if (!res) {
+                    console.log('no match for ya bidu');
+                } else {
+                    res.json().then((dat) => {
+                        console.log(dat);
+                        if (isEmpty(dat)) {
+                            formEl.innerHTML = noMatch();
+                        } else {
+                            formEl.innerHTML = gotTags(dat);
+                        }
+                    });
+                }
             }
-            );
+            );}
         }
-        
+        function loadingStuff() {
+            formEl.innerHTML = `<div class='loader-container'>
+                <h1>Finding your match </h1>
+                <div class='lds-hourglass'></div>
+            </div>`;
+            formEl.style.marginTop = "-3rem";
+        }
+        function doStuff() {
+            event.preventDefault();
+            const data = new URLSearchParams(new FormData(formEl));
+            loadingStuff();
+            customFetch(data);
+        }
+        function gotTags(res,type='normal') {
+            let dat= type==='normal'?'You both like':'they like';
+            let response = `
+            <div style="border:5px solid lightgrey;border-radius:32px;padding:15px"class="found-box">
+                <h4>Found a match for ya ❤️</h1>
+                <h3 style="margin-bottom:2rem;border:3px solid lightred" class="interests"> ${dat} ${res.sameTags.join()} </h3>
+                <h4>This is the meessage left by your Quarantyne</h4><br>
+                <h3 style="border:3px solid lightpink">${res.cid}</h3>
+            </div>
+        `;
+            return response;
+        }
+        function noMatch() {
+            return `<div><h3>No match for ya <br> search for a random a person or Try again with more interests</h3><br>
+            <button id="submit"  onclick="getRandom();">Find random</button></div>`
+        }
+        function getRandom(){
+            event.preventDefault(); 
+            console.log('works');
+            loadingStuff();
+            customFetch(1);
+        }
+        function isEmpty(obj) {
+            return Object.keys(obj).length === 0;
+        }
     </script>
-    
+
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<!-- <script>
-        function createTag(newDiv){
-
-        }
-        function tagsMgr(){
-            let m=document.querySelector('#tags').value;
-            if(m[m.length-1]===","){
-                let t=document.createElement('div');
-                t.className="new-tag";
-                let tt=document.createTextNode(m.substr(0,m.length-1));
-                t.appendChild(tt);
-                console.log(t);
-                document.querySelector('#tags').value=" ";
-            };
-        }
-    </script> -->

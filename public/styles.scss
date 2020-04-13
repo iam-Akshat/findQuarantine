@@ -3,6 +3,43 @@
     padding: 0;
     box-sizing: border-box;
 }
+.loader-container{
+  
+    align-self: center;
+  
+    
+}
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    color: #000;
+  }
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 100px solid #000;
+    border-color: #DA4453 transparent rgb(233, 125, 202) transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+  
 body{
     height: 100%;
     width: 100%;
@@ -33,9 +70,7 @@ body{
     margin: 5rem auto 0 auto;
     #cid{
         width: 100%;
-        height: 3rem;
-        
-
+        height: 6rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
         // margin-right: 50%;
@@ -125,6 +160,8 @@ header{
 // }
 
 footer{
+    // position: absolute;
+    // bottom: 0;
     margin-top: 2rem;
     line-height: 0.5rem;
     color: lightgray;
