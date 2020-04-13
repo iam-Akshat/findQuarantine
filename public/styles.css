@@ -184,6 +184,8 @@ body {
 .main-container {
   padding: 5% 5%;
   height: 100vh;
+  margin: 0 auto;
+  max-width: 1024px;
   width: 100vw;
   font-family: 'Poppins',sans-serif;
   color: #ffdada;
