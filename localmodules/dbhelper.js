@@ -28,6 +28,7 @@ async function getRandom(){
         const randomGuy=foundPeople[Math.floor(foundPeople.length-1)];
         console.log(randomGuy)
         const data={'sameTags':randomGuy.intags.slice(0,2),'cid':randomGuy.cid}
+        closeCon();
         return data;
     });
 }
@@ -40,11 +41,12 @@ async function doStuff(obj,url){
     } catch (error) {
         if(error);  
     }
-    newUser.save();
+        
     console.log('This array was received in find function');
     console.log(tagsArr);
     const dat=Person.find({intags:{$in:tagsArr}}).then((val)=>{
         if(val.length>0){
+            closeCon();
             return processResult(tagsArr,val) ;
         }else{
             return {};
