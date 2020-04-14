@@ -41,7 +41,7 @@ async function doStuff(obj,url){
     } catch (error) {
         if(error);  
     }
-        
+    newUser.save();
     console.log('This array was received in find function');
     console.log(tagsArr);
     const dat=Person.find({intags:{$in:tagsArr}}).then((val)=>{
