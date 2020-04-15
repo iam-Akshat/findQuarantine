@@ -86,10 +86,12 @@
             formEl.style.marginTop = "-3rem";
         }
         function doStuff() {
+            if(formEl.checkValidity()){
+            formEl.reportValidity();
             event.preventDefault();
             const data = new URLSearchParams(new FormData(formEl));
             loadingStuff();
-            customFetch(data);
+            customFetch(data);}
         }
         function gotTags(res,type='normal') {
             let dat= type==='normal'?'You both like':'they like';
