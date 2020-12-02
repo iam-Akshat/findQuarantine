@@ -10,18 +10,14 @@ app.use(express.static('public'));
 app.use(express.json());//Used for parsing form data
 app.use(express.urlencoded({extended:true})); //Parse URL-encoded bodies
 
-//console.log(myFunction);    
-function lot(c){
-    console.log(c);
-}
-app.get('/',(req,res)=>{
+app.get('/',(_req,res)=>{
     res.sendFile('index.html');
 });
-app.get('/random',async (req,res)=>{
+app.get('/random',async (_req,res)=>{
     const data=await myFunction.getRandom();
-    console.log('what abuot to sned');
-    console.log(data);
-    console.log('what abuot to sned');
+    // console.log('what about to send');
+    // console.log(data);
+    // console.log('what about to send');
     res.send(data);
 });
 app.post('/',async (req,res)=>{
@@ -40,5 +36,5 @@ app.post('/',async (req,res)=>{
 });
 
 app.listen(process.env.PORT || 3000,()=>{
-    console.log('Server started adsasdasdasdat 3000');
+    console.log(`Server started at port ${process.env.PORT || 3000}`);
 });
